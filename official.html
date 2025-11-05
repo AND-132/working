@@ -1,1 +1,108 @@
-<!DOCTYPE html> <html lang="ko"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Official Archive — 32’s Documentation</title> <meta name="description" content="박상희 공식 업무 아카이브 (2020–2025) — GitHub Pages" /> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&display=swap" rel="stylesheet"> <style> :root{ --primary:#0A2740; --accent:#3A7DFF; --bg:#F9FAFB; --card:#FFFFFF; --text:#111827; --muted:#6B7280; --ring:rgba(58,125,255,0.25); } *{box-sizing:border-box} html,body{height:100%} body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Pretendard', sans-serif; color:var(--text); background:linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%); } .container{max-width:1100px; margin:0 auto; padding:24px} header{ position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.1) blur(8px); background:rgba(255,255,255,.85); border-bottom:1px solid #E5E7EB; } .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px} .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit} .logo{width:34px; height:34px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg,var(--primary),var(--accent)); box-shadow:0 6px 20px rgba(0,0,0,.08)} .brand span{font-weight:700} .nav a{color:inherit; text-decoration:none} .links{display:flex; gap:14px; align-items:center} .pill{padding:10px 14px; border-radius:999px; border:1px solid #E5E7EB; background:#fff} .btn{padding:10px 14px; border-radius:12px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-weight:600} .btn:focus{outline:none; box-shadow:0 0 0 4px var(--ring)} .hero{display:grid; gap:18px; align-items:center; grid-template-columns:1.2fr .8fr; padding:48px 0} .hero h1{font-size:clamp(28px,4vw,40px); margin:0; color:var(--primary)} .sub{color:var(--muted); margin:0} .hero-card{background:var(--card); border:1px solid #E5E7EB; border-radius:20px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.05)} .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px} .card{background:var(--card); border:1px solid #E5E7EB; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:10px; transition:transform .15s ease, box-shadow .15s ease} .card:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.06)} .tag{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:#EAF2FF; color:var(--primary); font-size:12px; font-weight:600} .card h3{margin:6px 0 2px 0; font-size:18px} .card p{margin:0; color:var(--muted); font-size:14px} .card a{margin-top:auto; align-self:flex-start} .section{margin:40px 0 20px; display:flex; align-items:center; justify-content:space-between} .section h2{margin:0; font-size:22px; color:var(--primary)} footer{padding:40px 0; color:var(--muted); font-size:14px; text-align:center} @media (max-width:900px){ .hero{grid-template-columns:1fr;} .grid{grid-template-columns:1fr 1fr} } @media (max-width:600px){ .links{display:none} .grid{grid-template-columns:1fr} .pill, .btn{width:100%; text-align:center} } </style> </head> <body> <header> <div class="container nav"> <a class="brand" href="./"> <div class="logo" aria-hidden>📘</div> <span>Official Archive</span> </a> <nav class="links" aria-label="주요 링크"> <a class="pill" href="#tms">TMS</a> <a class="pill" href="#archives">Archives</a> <a class="pill" href="#about">About</a> <a class="btn" href="./login.html">로그인 / 회원가입</a> </nav> </div> </header> <main class="container"> <section class="hero"> <div> <h1>공식 아카이브 (2020–2025)</h1> <p class="sub">인증·심사·평가 대비용 행정 아카이브. HRD‑Net/NCS 문서, 평가서, 증빙자료를 체계적으로 보관합니다.</p> <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap"> <a class="btn" href="#quick-start">빠른 시작</a> <a class="pill" href="./official.html">새로고침</a> </div> </div> <div class="hero-card"> <strong>업무용 바로가기</strong> <ul style="margin:10px 0 0 0; padding-left:18px; line-height:1.7"> <li><a href="#tms">TMS 모듈</a> — 행정/강사/수강생/이수자/기관평가</li> <li><a href="#archives">연도별 아카이브</a> — 2020~2025</li> <li><a href="./login.html">로그인·회원가입</a> — Firebase 연동 가능</li> </ul> </div> </section> <section id="tms" class="section"> <h2>TMS 모듈</h2> <a class="pill" href="#">모듈 구조 JSON 보기</a> </section> <div class="grid"> <article class="card"> <span class="tag">행정모드</span> <h3>인증·심사 체크리스트</h3> <p>기관인증/과정심사 점검표 및 제출 양식 관리.</p> <a class="btn" href="#">열기</a> </article> <article class="card"> <span class="tag">강사모드</span> <h3>NCS 교과목 회의록</h3> <p>교과운영 회의록, 수업계획서, 평가계획 연계 문서.</p> <a class="btn" href="#">열기</a> </article> <article class="card"> <span class="tag">수강생모드</span> <h3>훈련생 가이드</h3> <p>출결/환불/장려금, 취업연계 절차 안내 자료.</p> <a class="btn" href="#">열기</a> </article> <article class="card"> <span class="tag">이수자평가</span> <h3>평가 운영 패키지</h3> <p>평가일지, 감독자 체크리스트, 이의신청 양식.</p> <a class="btn" href="#">열기</a> </article> <article class="card"> <span class="tag">기관평가</span> <h3>지표별 증빙폴더</h3> <p>취업률, 산학리스트, 강사경력 증빙자료 정리.</p> <a class="btn" href="#">열기</a> </article> <article class="card"> <span class="tag">유틸</span> <h3>템플릿 다운로드</h3> <p>회의록, 직괴 일지, 평가표 등 공용 템플릿.</p> <a class="btn" href="#">열기</a> </article> </div> <section id="archives" class="section"> <h2>연도별 아카이브</h2> <a class="pill" href="#">폴더 열기</a> </section> <div class="grid"> <article class="card"> <span class="tag">2020–2021</span> <h3>초기 문서</h3> <p>기관 세팅, 훈련계좌제 초반 기록, 인증 기초자료.</p> <a class="btn" href="#">열기</a> </article> <article class="card"> <span class="tag">2022–2023</span> <h3>운영 및 심사기록</h3> <p>훈련생 관리, 과정개편, 심사 대응 서류.</p> <a class="btn" href="#">열기</a> </article> <article class="card"> <span class="tag">2024–2025</span> <h3>통합평가 자료</h3> <p>심사일원화, 인증대응, 환불·취업 프로세스.</p> <a class="btn" href="#">열기</a> </article> </div> <section id="about" class="section" style="margin-top:52px"> <h2>About</h2> <a class="pill" href="mailto:sanghee@example.com">연락하기</a> </section> <div class="hero-card" id="quick-start" aria-label="빠른 시작"> <ol style="margin:0; padding-left:18px; line-height:1.9"> <li><strong>새 저장소</strong> 생성 → 이름 예: <code>official-archive</code>.</li> <li><code>official.html</code> 파일 업로드 → 커밋/푸시.</li> <li>Settings → Pages → Branch를 <code>main / (root)</code>로 설정.</li> <li>저장 후 표시된 URL 접속.</li> </ol> <p class="sub" style="margin-top:10px">Firebase 인증을 사용할 경우 새 URL을 <code>authDomain</code>에 추가하세요.</p> </div> <footer> <p>© <span id="y"></span> 박상희 • Official Archive • Built with GitHub Pages</p> </footer> <script> document.getElementById('y').textContent = new Date().getFullYear(); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Official Archive — 32’s Documentation</title>
+  <meta name="description" content="박상희 공식 업무 아카이브 (2020–2025) — GitHub Pages" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#0A2740;
+      --accent:#3A7DFF;
+      --bg:#F9FAFB;
+      --card:#FFFFFF;
+      --text:#111827;
+      --muted:#6B7280;
+      --ring:rgba(58,125,255,0.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Pretendard', sans-serif;
+      color:var(--text); background:linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
+    }
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.1) blur(8px);
+      background:rgba(255,255,255,.85); border-bottom:1px solid #E5E7EB;
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+    .logo{width:34px; height:34px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg,var(--primary),var(--accent)); box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    .brand span{font-weight:700}
+    .links{display:flex; gap:14px; align-items:center}
+    .pill{padding:10px 14px; border-radius:999px; border:1px solid #E5E7EB; background:#fff}
+    .btn{padding:10px 14px; border-radius:12px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-weight:600}
+    .btn:focus{outline:none; box-shadow:0 0 0 4px var(--ring)}
+    .hero{display:grid; gap:18px; align-items:center; grid-template-columns:1.2fr .8fr; padding:48px 0}
+    footer{padding:40px 0; color:var(--muted); font-size:14px; text-align:center}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+    }
+    @media (max-width:600px){
+      .links{display:none}
+      .pill, .btn{width:100%; text-align:center}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="./">
+        <div class="logo">📘</div>
+        <span>Official Archive</span>
+      </a>
+      <nav class="links">
+        <a class="pill" href="#tms">TMS</a>
+        <a class="pill" href="#archives">Archives</a>
+        <a class="pill" href="#about">About</a>
+        <a class="btn" id="authBtn" href="./login.html">로그인 / 회원가입</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- (중간 내용 동일 / 생략) -->
+
+    <footer>
+      <p>© <span id="y"></span> 박상희 • Official Archive • Built with GitHub Pages</p>
+    </footer>
+  </main>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+<script type="module">
+  import { auth } from './firebase-init.js';
+  import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const authBtn = document.getElementById('authBtn');
+
+  onAuthStateChanged(auth, (user) => {
+
+    // ✅ 로그인 안되어있으면 접근 차단
+    if (!user) {
+      location.href = "./login.html";
+      return;
+    }
+
+    // ✅ 로그인 상태 → 로그아웃 버튼 전환
+    authBtn.textContent = "로그아웃";
+    authBtn.href = "#";
+    authBtn.onclick = async () => {
+      await signOut(auth);
+      alert("로그아웃 되었습니다.");
+      location.href = "./login.html";
+    };
+  });
+</script>
+
+</body>
+</html>
