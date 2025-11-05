@@ -25,6 +25,21 @@
       color:var(--text); background:linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
     }
     .container{max-width:1100px; margin:0 auto; padding:24px}
+.card{
+  background:var(--card);
+  border:1px solid #E5E7EB;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition:transform .15s ease, box-shadow .15s ease;
+  height:100%; /* 카드 높이 균일화 */
+}
+
+.card a{
+  margin-top:auto; /* 버튼을 카드 하단으로 고정 */
+}
     header{
       position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.1) blur(8px);
       background:rgba(255,255,255,.85); border-bottom:1px solid #E5E7EB;
