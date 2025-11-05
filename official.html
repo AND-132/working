@@ -62,7 +62,6 @@
 
   <main class="container">
 
-    <!-- ✅ 여기부터 네가 원래 쓰던 본문 (복원 완료) -->
     <section class="hero">
       <div>
         <h1>공식 아카이브 (2020–2025)</h1>
@@ -138,20 +137,30 @@
   const authBtn = document.getElementById('authBtn');
 
   onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      location.href = "./login.html";
-      return;
-    }
 
-    authBtn.textContent = "로그아웃";
-    authBtn.href = "#";
-    authBtn.onclick = async () => {
-      await signOut(auth);
-      alert("로그아웃 되었습니다.");
-      location.href = "./login.html";
-    };
+    if (user) {
+      // ✅ 로그인 상태 → 로그아웃 버튼으로 표시
+      authBtn.textContent = "로그아웃";
+      authBtn.href = "#";
+      authBtn.onclick = async () => {
+        await signOut(auth);
+        alert("로그아웃 되었습니다.");
+        location.href = "./login.html";
+      };
+
+    } else {
+      // ❌ 로그아웃 상태 → 로그인 / 회원가입 유지
+      authBtn.textContent = "로그인 / 회원가입";
+      authBtn.href = "./login.html";
+
+      // ⭐ 페이지가 먼저 렌더된 후 이동 (디자인 깨짐 방지)
+      setTimeout(() => {
+        location.href = "./login.html";
+      }, 10);
+    }
   });
 </script>
+
 
 </body>
 </html>
