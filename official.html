@@ -196,7 +196,7 @@
   const app = initializeApp(firebaseConfig);
   const storage = getStorage(app);
 
-  const container = document.querySelector(".tms-grid");
+  const container = document.getElementById("official-grid");
 
   async function loadOfficialFolders() {
     const baseRef = ref(storage, "official");
