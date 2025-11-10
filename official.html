@@ -100,7 +100,11 @@
       <h2>TMS 모듈</h2>
       <a class="pill" href="#">모듈 구조 JSON 보기</a>
     </section>
-
+<!-- 🔥 Firebase에서 불러온 폴더 카드가 들어갈 영역 -->
+<section class="archive-section">
+  <h2 class="section-title">연도별 아카이브</h2>
+  <div class="tms-grid" id="official-grid"></div>
+</section>
     <div class="grid">
       <article class="card"><span class="tag">행정모드</span><h3>인증·심사 체크리스트</h3><p>기관인증/과정심사 점검표 및 제출 양식 관리.</p><a class="btn" href="#">열기</a></article>
       <article class="card"><span class="tag">강사모드</span><h3>NCS 교과목 회의록</h3><p>교과운영 회의록, 수업계획서, 평가계획 연계 문서.</p><a class="btn" href="#">열기</a></article>
@@ -139,6 +143,7 @@
     <footer>
       <p>© <span id="y"></span> 박상희 • Official Archive • Built with GitHub Pages</p>
     </footer>
+
   </main>
 
 <script>
@@ -175,7 +180,125 @@
     }
   });
 </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyBFHz2dP8iucRWl7KHvyv6I2HlRqHLDjkw",
+    authDomain: "and-132-archive.firebaseapp.com",
+    projectId: "and-132-archive",
+    storageBucket: "and-132-archive.appspot.com",
+    messagingSenderId: "650954051303",
+    appId: "1:650954051303:web:9ebe30987a0dbaf0451c42"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const storage = getStorage(app);
+
+  const container = document.querySelector(".tms-grid");
+
+  async function loadOfficialFolders() {
+    const baseRef = ref(storage, "official");
+    const res = await listAll(baseRef);
+
+    res.prefixes.forEach(async (folder) => {
+      const card = document.createElement("div");
+      card.className = "tms-card";
+
+      const title = document.createElement("h3");
+      title.innerText = folder.name;
+
+      const button = document.createElement("button");
+      button.className = "open-btn";
+      button.innerText = "열기";
+      button.onclick = () => openFolder(folder.fullPath);
+
+      card.appendChild(title);
+      card.appendChild(button);
+      container.appendChild(card);
+    });
+  }
+
+  async function openFolder(path) {
+    const folderRef = ref(storage, path);
+    const res = await listAll(folderRef);
+
+    let list = "";
+    for (const item of res.items) {
+      const url = await getDownloadURL(item);
+      list += `<li><a href="${url}" target="_blank">${item.name}</a></li>`;
+    }
+
+    const win = window.open("", "_blank");
+    win.document.write(`
+      <h2>${path}</h2>
+      <ul>${list}</ul>
+    `);
+  }
+
+  loadOfficialFolders();
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBFHz2dP8iucRWl7KHvyv6I2HlRqHLDjkw",
+    authDomain: "and-132-archive.firebaseapp.com",
+    projectId: "and-132-archive",
+    storageBucket: "and-132-archive.appspot.com",
+    messagingSenderId: "650954051303",
+    appId: "1:650954051303:web:9ebe30987a0dbaf0451c42"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const storage = getStorage(app);
+
+  const container = document.getElementById("official-grid");
+
+  async function loadOfficialFolders() {
+    const baseRef = ref(storage, "official");
+    const res = await listAll(baseRef);
+
+    res.prefixes.forEach(async (folder) => {
+      const card = document.createElement("div");
+      card.className = "tms-card";
+
+      const title = document.createElement("h3");
+      title.innerText = folder.name; // 폴더명이 카드 타이틀
+
+      const button = document.createElement("button");
+      button.className = "open-btn";
+      button.innerText = "열기";
+      button.onclick = () => openFolder(folder.fullPath);
+
+      card.appendChild(title);
+      card.appendChild(button);
+      container.appendChild(card);
+    });
+  }
+
+  async function openFolder(path) {
+    const folderRef = ref(storage, path);
+    const res = await listAll(folderRef);
+
+    let list = "";
+    for (const item of res.items) {
+      const url = await getDownloadURL(item);
+      list += `<li><a href="${url}" target="_blank">${item.name}</a></li>`;
+    }
+
+    const win = window.open("", "_blank");
+    win.document.write(`
+      <h2>${path}</h2>
+      <ul>${list}</ul>
+    `);
+  }
+
+  loadOfficialFolders();
+</script>
 
 </body>
 </html>
