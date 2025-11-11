@@ -1,72 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Official Archive — 32’s Documentation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official Archive (2020–2025)</title>
 
-  <!-- Pretendard + Theme -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --primary:#0A2740;
-      --accent:#3A7DFF;
-      --bg:#F9FAFB;
-      --card:#FFFFFF;
-      --text:#111827;
-      --muted:#6B7280;
-      --ring:rgba(58,125,255,0.25);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Pretendard', sans-serif;
-      color:var(--text);
-    }
-    .container{max-width:1100px; margin:0 auto; padding:24px}
+    :root{--primary:#0A2740;--accent:#3A7DFF;--bg:#F9FAFB;--card:#FFFFFF;--text:#111827;--muted:#6B7280;}
+    body{margin:0;background:linear-gradient(180deg,#fff,var(--bg));font-family:'Pretendard',sans-serif;color:var(--text);}
+    .container{max-width:1100px;margin:0 auto;padding:24px;}
+    h1,h2,h3{margin:0 0 6px;}
+    .sub{color:var(--muted);font-size:14px;}
 
-    .card{
-      background:var(--card);
-      border:1px solid #E5E7EB;
-      border-radius:18px;
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      transition:transform .15s ease, box-shadow .15s ease;
-      height:100%;
-    }
-    .card:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.06)}
-    .card a{margin-top:auto}
-
-    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:28px}
-
-    h1,h2,h3{margin:0 0 6px}
-    .sub{color:var(--muted); font-size:14px}
-
-    .pill{
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid #E5E7EB;
-      background:#fff;
-      font-size:14px;
-      text-decoration:none;
-      color:inherit;
-    }
-    .btn{
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid var(--accent);
-      background:var(--accent);
-      color:#fff;
-      text-decoration:none;
-      text-align:center;
-      font-weight:600;
-    }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+    .card{background:var(--card);border:1px solid #E5E7EB;border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;transition:.2s;height:100%;}
+    .card:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(0,0,0,.06);}
+    .btn{margin-top:auto;padding:10px 14px;border-radius:12px;background:var(--accent);color:#fff;text-align:center;text-decoration:none;font-weight:600;}
   </style>
 </head>
 
@@ -74,70 +27,52 @@
   <main class="container">
 
     <h1>공식 아카이브 (2020–2025)</h1>
-    <p class="sub">인증·심사·평가 대비용 행정 아카이브 — 체계적으로 정리된 공식 문서 저장소</p>
+    <p class="sub">기관 인증 / 심사 대비 / 평가자료 정리</p>
 
-    <!-- TMS 모듈 -->
     <h2 style="margin-top:40px;">TMS 모듈</h2>
-
     <div class="grid">
-      <article class="card">
+
+      <div class="card">
         <h3>인증·심사 체크리스트</h3>
-        <p>기관 인증 및 과정 심사 대비용 체크리스트와 제출 양식.</p>
-        <a class="btn" href="list.html?path=official/isuja/인증심사체크리스트">열기</a>
-      </article>
+        <p>기관 인증 및 과정 심사 대비 문서 모음</p>
+        <a class="btn" href="list.html?path=official/isuja">열기</a>
+      </div>
 
-      <article class="card">
-        <h3>NCS 교육과 회의록</h3>
-        <p>교과목 운영 회의록, 평가계획 연계 문서 정리.</p>
-        <a class="btn" href="list.html?path=official/isuja/NCS교육과회의록">열기</a>
-      </article>
-
-      <article class="card">
-        <h3>훈련생 가이드</h3>
-        <p>출결, 환불, 장려금, 취업 연계 안내자료.</p>
-        <a class="btn" href="list.html?path=official/isuja/훈련생가이드">열기</a>
-      </article>
-
-      <article class="card">
+      <div class="card">
         <h3>평가 운영 패키지</h3>
-        <p>평가일지, 감독자 체크리스트, 이의신청 양식.</p>
-        <a class="btn" href="list.html?path=official/isuja/운영패키지">열기</a>
-      </article>
+        <p>평가일지 / 감독자 체크 / 이의신청</p>
+        <a class="btn" href="list.html?path=official/운영패키지">열기</a>
+      </div>
 
-      <article class="card">
-        <h3>지표별 증빙폴더</h3>
-        <p>취업률, 산학리스트, 강사경력 증빙자료 정리.</p>
-        <a class="btn" href="list.html?path=official/isuja/지표별증빙폴더">열기</a>
-      </article>
+      <div class="card">
+        <h3>훈련과정 관리</h3>
+        <p>운영 / 출결 / 교과 / 실습</p>
+        <a class="btn" href="list.html?path=official/훈련과정관리">열기</a>
+      </div>
 
-      <article class="card">
-        <h3>템플릿 다운로드</h3>
-        <p>회의록/직괴일지/보고서 등 표준 템플릿 모음.</p>
-        <a class="btn" href="list.html?path=official/isuja/템플릿">열기</a>
-      </article>
     </div>
 
-    <!-- 연도별 아카이브 -->
     <h2 style="margin-top:50px;">연도별 아카이브</h2>
-
     <div class="grid">
-      <article class="card">
-        <h3>2020–2021</h3>
-        <p>기관 초기 설정 및 개원 관련 기록.</p>
-        <a class="btn" href="list.html?path=official/isuja/2020-2021">열기</a>
-      </article>
 
-      <article class="card">
+      <div class="card">
+        <h3>01_훈련운영</h3>
+        <p>훈련운영 증빙 & 보고자료</p>
+        <a class="btn" href="list.html?path=official/01_훈련운영">열기</a>
+      </div>
+
+      <div class="card">
         <h3>2022–2023</h3>
-        <p>과정 운영 변경, 심사 대응 문서 정리.</p>
-        <a class="btn" href="list.html?path=official/isuja/2022-2023">열기</a>
-      </article>
+        <p>심사 대응 문서 / 운영 변화 기록</p>
+        <a class="btn" href="list.html?path=official/2022-2023">열기</a>
+      </div>
 
-      <article class="card">
+      <div class="card">
         <h3>2024–2025</h3>
-        <p>통합심사·인증평가 자문 대응자료.</p>
-        <a class="btn" href="list.html?path=official/isuja/2024-2025">열기</a>
-      </article>
+        <p>통합심사 대응자료 모음</p>
+        <a class="btn" href="list.html?path=official/2024-2025">열기</a>
+      </div>
+
     </div>
 
   </main>
