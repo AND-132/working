@@ -34,50 +34,59 @@
   <a href="official.html" class="btn btn-outline-secondary btn-sm mt-4">← 뒤로가기</a>
 
   <script type="module">
-    import { storage } from "./firebase-init.js";
-    import { ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
+  import { storage } from "./firebase-init.js";
+  import { ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
 
-    // URL 파라미터에서 path 가져오기
-    const urlParams = new URLSearchParams(window.location.search);
-    const folderPath = urlParams.get("path");
+  const params = new URLSearchParams(window.location.search);
+  const currentPath = params.get("path");
+  document.getElementById("folderPath").innerText = "📂 " + currentPath;
 
-    document.getElementById("folderPath").innerText = "📂 " + folderPath;
+  const fileListDiv = document.getElementById("fileList");
+  const loading = document.getElementById("loading");
 
-    const fileListDiv = document.getElementById("fileList");
-    const loading = document.getElementById("loading");
+  async function loadFiles() {
+    try {
+      const folderRef = ref(storage, currentPath);
+      const res = await listAll(folderRef);
 
-    async function loadFiles() {
-      try {
-        const listRef = ref(storage, folderPath);
-        const res = await listAll(listRef);
+      loading.style.display = "none";
 
-        if (res.items.length === 0) {
-          loading.innerText = "문서가 없습니다.";
-          return;
-        }
-
-        loading.style.display = "none";
-
-        for (const item of res.items) {
-          const url = await getDownloadURL(item);
-          const div = document.createElement("div");
-          div.className = "file-item";
-
-          div.innerHTML = `
-            <span>📄 ${item.name}</span>
-            <a href="${url}" target="_blank" class="btn btn-sm btn-primary">열기</a>
-          `;
-          fileListDiv.appendChild(div);
-        }
-
-      } catch (error) {
-        loading.innerText = "불러오는 중 오류가 발생했습니다.";
-        console.error(error);
+      // ✅ 폴더 먼저 표시
+      for (const folder of res.prefixes) {
+        const div = document.createElement("div");
+        div.className = "file-item";
+        div.innerHTML = `
+          <span>📁 ${folder.name}</span>
+          <a href="list.html?path=${folder.fullPath}" class="btn">열기</a>
+        `;
+        fileListDiv.appendChild(div);
       }
-    }
 
-    loadFiles();
-  </script>
+      // ✅ 파일 표시
+      for (const item of res.items) {
+        const url = await getDownloadURL(item);
+        const div = document.createElement("div");
+        div.className = "file-item";
+        div.innerHTML = `
+          <span>📄 ${item.name}</span>
+          <a href="${url}" target="_blank" class="btn">보기</a>
+        `;
+        fileListDiv.appendChild(div);
+      }
+
+      if (res.prefixes.length === 0 && res.items.length === 0) {
+        fileListDiv.innerHTML = "<p>📭 문서가 없습니다.</p>";
+      }
+
+    } catch (error) {
+      console.error(error);
+      loading.innerText = "오류가 발생했습니다.";
+    }
+  }
+
+  loadFiles();
+</script>
+
 
 </body>
 </html>
