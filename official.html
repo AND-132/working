@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Official Archive — 32’s Documentation</title>
-  <meta name="description" content="박상희 공식 업무 아카이브 (2020–2025)">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&display=swap" rel="stylesheet">
@@ -17,8 +17,8 @@
       --card:#FFFFFF;
       --text:#111827;
       --muted:#6B7280;
-      --ring:rgba(58,125,255,0.25);
     }
+
     *{box-sizing:border-box;}
     body{
       margin:0;
@@ -26,10 +26,10 @@
       background:linear-gradient(180deg,#ffffff 0%,var(--bg) 100%);
       color:var(--text);
     }
+
+    /* HEADER */
     header{
-      position:sticky;
-      top:0;
-      z-index:10;
+      position:sticky;top:0;z-index:10;
       background:rgba(255,255,255,.85);
       backdrop-filter:saturate(1.1) blur(8px);
       border-bottom:1px solid #E5E7EB;
@@ -37,17 +37,34 @@
     .nav{max-width:1100px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);}
     .logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:white;font-size:18px;}
+    #authBtn{padding:10px 14px;border-radius:12px;background:var(--accent);color:white;text-decoration:none;font-weight:600;}
 
+    /* LAYOUT */
     main{max-width:1100px;margin:0 auto;padding:32px 24px;}
-    h1{font-size:32px;margin:0 0 8px;}
+    h1{font-size:30px;margin:0 0 6px;}
     .sub{color:var(--muted);font-size:14px;}
 
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:40px;}
-    .hero-card{background:var(--card);border:1px solid #E5E7EB;border-radius:20px;padding:20px;box-shadow:0 8px 24px rgba(0,0,0,.05);}
-  
+    /* HERO */
+    .hero{
+      margin-top:40px;
+      display:grid;grid-template-columns:1.2fr .8fr;gap:24px;
+    }
+    .hero-card{
+      background:var(--card);
+      border:1px solid #E5E7EB;
+      border-radius:20px;
+      padding:20px;
+      box-shadow:0 8px 24px rgba(0,0,0,.05);
+    }
+
+    /* GRID & CARD */
     .section-title{margin-top:48px;font-size:22px;font-weight:600;}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
-  
+    .grid, #official-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:16px;
+    }
     .card{
       background:var(--card);
       border:1px solid #E5E7EB;
@@ -70,6 +87,7 @@
       text-decoration:none;
       font-weight:600;
     }
+
   </style>
 </head>
 
@@ -81,11 +99,13 @@
         <div class="logo">📘</div>
         <span>Official Archive</span>
       </a>
+      <a id="authBtn" href="./login.html">로그인 / 회원가입</a>
     </div>
   </header>
 
   <main>
 
+    <!-- HERO -->
     <section class="hero">
       <div>
         <h1>공식 아카이브 (2020–2025)</h1>
@@ -101,6 +121,7 @@
       </div>
     </section>
 
+    <!-- TMS -->
     <h2 class="section-title">TMS 모듈</h2>
     <div class="grid">
 
@@ -124,6 +145,7 @@
 
     </div>
 
+    <!-- FIXED YEAR ARCHIVE -->
     <h2 class="section-title">연도별 아카이브</h2>
     <div class="grid">
 
@@ -147,7 +169,67 @@
 
     </div>
 
+    <!-- 🔥 HERE: Firebase folder auto sync -->
+    <h2 class="section-title">연결된 공식 자료 (Firebase)</h2>
+    <div id="official-grid"></div>
+
   </main>
+
+
+<script type="module">
+  import { auth } from './firebase-init.js';
+  import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const authBtn = document.getElementById('authBtn');
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      authBtn.textContent = "로그아웃";
+      authBtn.href = "#";
+      authBtn.onclick = async () => { await signOut(auth); location.reload(); };
+    } else {
+      authBtn.textContent = "로그인 / 회원가입";
+      authBtn.href = "./login.html";
+    }
+  });
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBFHz2dP8iucRWl7KHvyv6I2HlRqHLDjkw",
+    authDomain: "and-132-archive.firebaseapp.com",
+    projectId: "and-132-archive",
+    storageBucket: "and-132-archive.appspot.com",
+    messagingSenderId: "650954051303",
+    appId: "1:650954051303:web:9ebe30987a0dbaf0451c42"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const storage = getStorage(app);
+  const container = document.getElementById("official-grid");
+
+  async function loadOfficialFolders() {
+    const baseRef = ref(storage, "official");
+    const res = await listAll(baseRef);
+
+    res.prefixes.forEach(folder => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${folder.name}</h3>
+        <p>저장됨 · Firebase Storage</p>
+        <a class="btn" href="list.html?path=${folder.fullPath}">열기</a>
+      `;
+      container.appendChild(card);
+    });
+  }
+  loadOfficialFolders();
+</script>
+
+<script type="module" src="./storage-eval.js"></script>
 
 </body>
 </html>
