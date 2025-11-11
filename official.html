@@ -109,7 +109,16 @@
       <article class="card"><span class="tag">행정모드</span><h3>인증·심사 체크리스트</h3><p>기관인증/과정심사 점검표 및 제출 양식 관리.</p><a class="btn" href="#">열기</a></article>
       <article class="card"><span class="tag">강사모드</span><h3>NCS 교과목 회의록</h3><p>교과운영 회의록, 수업계획서, 평가계획 연계 문서.</p><a class="btn" href="#">열기</a></article>
       <article class="card"><span class="tag">수강생모드</span><h3>훈련생 가이드</h3><p>출결/환불/장려금, 취업연계 절차 안내 자료.</p><a class="btn" href="#">열기</a></article>
-      <article class="card"><span class="tag">이수자평가</span><h3>평가 운영 패키지</h3><p>평가일지, 감독자 체크리스트, 이의신청 양식.</p><a class="btn" href="#">열기</a></article>
+      <article class="card" id="evaluationCard">
+  <span class="tag">이수자평가</span>
+  <h3>평가 운영 패키지</h3>
+  <p>평가일지, 감독자 체크리스트, 이의신청 양식.</p>
+  <a class="btn" href="#" id="toggleFilesBtn">열기</a>
+
+  <!-- 🔥 여기에 파일 목록이 표시됨 (처음엔 숨김) -->
+  <div id="fileList" style="display:none; margin-top:10px;"></div>
+</article>
+
       <article class="card"><span class="tag">기관평가</span><h3>지표별 증빙폴더</h3><p>취업률, 산학리스트, 강사경력 증빙자료 정리.</p><a class="btn" href="#">열기</a></article>
       <article class="card"><span class="tag">유틸</span><h3>템플릿 다운로드</h3><p>회의록, 직괴 일지, 평가표 등 공용 템플릿.</p><a class="btn" href="#">열기</a></article>
     </div>
@@ -299,6 +308,7 @@
 
   loadOfficialFolders();
 </script>
+<script type="module" src="./storage-eval.js"></script>
 
 </body>
 </html>
