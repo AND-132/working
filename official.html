@@ -4,11 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Official Archive — 32’s Documentation</title>
-
+  <meta name="description" content="박상희 공식 업무 아카이브 (2020–2025) — GitHub Pages" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --primary:#0A2740;
@@ -17,165 +16,111 @@
       --card:#FFFFFF;
       --text:#111827;
       --muted:#6B7280;
+      --ring:rgba(58,125,255,0.25);
     }
-
-    *{box-sizing:border-box;}
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      margin:0;
-      font-family:'Pretendard',sans-serif;
-      background:linear-gradient(180deg,#ffffff 0%,var(--bg) 100%);
-      color:var(--text);
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Pretendard', sans-serif;
+      color:var(--text); background:linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
     }
+    .container{max-width:1100px; margin:0 auto; padding:24px}
 
-    /* HEADER */
     header{
-      position:sticky;top:0;z-index:10;
-      background:rgba(255,255,255,.85);
-      backdrop-filter:saturate(1.1) blur(8px);
-      border-bottom:1px solid #E5E7EB;
+      position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.1) blur(8px);
+      background:rgba(255,255,255,.85); border-bottom:1px solid #E5E7EB;
     }
-    .nav{max-width:1100px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);}
-    .logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:white;font-size:18px;}
-    #authBtn{padding:10px 14px;border-radius:12px;background:var(--accent);color:white;text-decoration:none;font-weight:600;}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+    .logo{width:34px; height:34px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg,var(--primary),var(--accent)); box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    .links{display:flex; gap:14px; align-items:center}
+    .pill{padding:10px 14px; border-radius:999px; border:1px solid #E5E7EB; background:#fff; text-decoration:none; color:var(--text)}
+    .btn{padding:10px 14px; border-radius:12px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-weight:600; text-decoration:none; display:inline-block}
 
-    /* LAYOUT */
-    main{max-width:1100px;margin:0 auto;padding:32px 24px;}
-    h1{font-size:30px;margin:0 0 6px;}
-    .sub{color:var(--muted);font-size:14px;}
+    .hero{display:grid; gap:18px; align-items:center; grid-template-columns:1.2fr .8fr; padding:48px 0}
+    .hero-card{background:var(--card); border:1px solid #E5E7EB; border-radius:20px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.05)}
 
-    /* HERO */
-    .hero{
-      margin-top:40px;
-      display:grid;grid-template-columns:1.2fr .8fr;gap:24px;
-    }
-    .hero-card{
-      background:var(--card);
-      border:1px solid #E5E7EB;
-      border-radius:20px;
-      padding:20px;
-      box-shadow:0 8px 24px rgba(0,0,0,.05);
-    }
-
-    /* GRID & CARD */
-    .section-title{margin-top:48px;font-size:22px;font-weight:600;}
-    .grid, #official-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-top:16px;
-    }
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px}
     .card{
-      background:var(--card);
-      border:1px solid #E5E7EB;
-      border-radius:18px;
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      transition:transform .15s ease, box-shadow .15s ease;
-      height:100%;
+      background:var(--card); border:1px solid #E5E7EB; border-radius:18px;
+      padding:18px; display:flex; flex-direction:column; gap:10px;
+      transition:transform .15s ease, box-shadow .15s ease; height:100%;
     }
-    .card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,.06);}
-    .btn{
-      margin-top:auto;
-      padding:10px 14px;
-      border-radius:12px;
-      background:var(--accent);
-      color:#fff;
-      text-align:center;
-      text-decoration:none;
-      font-weight:600;
-    }
-
+    .card:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.06)}
+    footer{padding:40px 0; color:var(--muted); font-size:14px; text-align:center}
   </style>
 </head>
 
 <body>
-
   <header>
-    <div class="nav">
+    <div class="container nav">
       <a class="brand" href="./">
         <div class="logo">📘</div>
         <span>Official Archive</span>
       </a>
-      <a id="authBtn" href="./login.html">로그인 / 회원가입</a>
+      <nav class="links">
+        <a class="pill" href="#tms">TMS</a>
+        <a class="pill" href="#archives">Archives</a>
+        <a class="pill" href="#about">About</a>
+        <a class="btn" id="authBtn" href="./login.html">로그인 / 회원가입</a>
+      </nav>
     </div>
   </header>
 
-  <main>
+  <main class="container">
 
-    <!-- HERO -->
     <section class="hero">
       <div>
         <h1>공식 아카이브 (2020–2025)</h1>
-        <p class="sub">기관 인증 / 심사 대비 / 평가자료 정리</p>
+        <p class="sub">인증·심사·평가 대비용 행정 아카이브. HRD-Net/NCS 문서, 평가서, 증빙자료를 체계적으로 보관합니다.</p>
+        <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
+          <a class="btn" href="#quick-start">빠른 시작</a>
+          <a class="pill" href="./official.html">새로고침</a>
+        </div>
       </div>
       <div class="hero-card">
         <strong>업무용 바로가기</strong>
-        <ul style="margin:12px 0 0;padding-left:20px;line-height:1.7;">
-          <li>TMS 모듈</li>
-          <li>연도별 아카이브</li>
-          <li>평가 운영 패키지</li>
+        <ul style="margin:10px 0 0 0; padding-left:18px; line-height:1.7">
+          <li><a href="#tms">TMS 모듈</a></li>
+          <li><a href="#archives">연도별 아카이브</a></li>
+          <li><a href="./login.html">로그인·회원가입</a></li>
         </ul>
       </div>
     </section>
 
-    <!-- TMS -->
-    <h2 class="section-title">TMS 모듈</h2>
+    <section id="tms" class="section">
+      <h2>TMS 모듈</h2>
+      <a class="pill" href="#">모듈 구조 JSON 보기</a>
+    </section>
+
+    <!-- 🔥 Firebase 자동 로드 카드 들어갈 위치 -->
+    <section class="archive-section">
+      <h2 class="section-title">연도별 아카이브 (연결됨)</h2>
+      <div class="grid" id="official-grid"></div>
+    </section>
+
     <div class="grid">
-
-      <div class="card">
-        <h3>인증·심사 체크리스트</h3>
-        <p>기관 인증 및 과정 심사 대비 문서 모음</p>
-        <a class="btn" href="list.html?path=official/isuja">열기</a>
-      </div>
-
-      <div class="card">
+      <article class="card"><h3>인증·심사 체크리스트</h3><p>기관인증/과정심사 점검표 및 제출 양식 관리.</p><a class="btn" href="#">열기</a></article>
+      <article class="card"><h3>NCS 교과목 회의록</h3><p>교과운영 회의록, 수업계획서, 평가계획 연계 문서.</p><a class="btn" href="#">열기</a></article>
+      <article class="card" id="evaluationCard">
         <h3>평가 운영 패키지</h3>
-        <p>평가일지 / 감독자 체크 / 이의신청</p>
-        <a class="btn" href="list.html?path=official/운영패키지">열기</a>
-      </div>
-
-      <div class="card">
-        <h3>훈련과정 관리</h3>
-        <p>운영 / 출결 / 교과 / 실습</p>
-        <a class="btn" href="list.html?path=official/훈련과정관리">열기</a>
-      </div>
-
+        <p>평가일지/감독자 체크리스트/이의신청 양식.</p>
+        <a class="btn" href="#" id="toggleFilesBtn">열기</a>
+        <div id="fileList" style="display:none; margin-top:10px;"></div>
+      </article>
     </div>
 
-    <!-- FIXED YEAR ARCHIVE -->
-    <h2 class="section-title">연도별 아카이브</h2>
-    <div class="grid">
-
-      <div class="card">
-        <h3>01_훈련운영</h3>
-        <p>훈련운영 증빙 & 보고자료</p>
-        <a class="btn" href="list.html?path=official/01_훈련운영">열기</a>
-      </div>
-
-      <div class="card">
-        <h3>2022–2023</h3>
-        <p>심사 대응 문서 / 운영 변화 기록</p>
-        <a class="btn" href="list.html?path=official/2022-2023">열기</a>
-      </div>
-
-      <div class="card">
-        <h3>2024–2025</h3>
-        <p>통합심사 대응자료 모음</p>
-        <a class="btn" href="list.html?path=official/2024-2025">열기</a>
-      </div>
-
-    </div>
-
-    <!-- 🔥 HERE: Firebase folder auto sync -->
-    <h2 class="section-title">연결된 공식 자료 (Firebase)</h2>
-    <div id="official-grid"></div>
+    <footer>
+      <p>© <span id="y"></span> 박상희 • Official Archive • Built with GitHub Pages</p>
+    </footer>
 
   </main>
 
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
 
+<!-- ✅ Firebase 로그인 유지 -->
 <script type="module">
   import { auth } from './firebase-init.js';
   import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -194,17 +139,18 @@
   });
 </script>
 
+<!-- ✅ Firebase 폴더 자동 카드 UI 통일 -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+  import { getStorage, ref, listAll } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyBFHz2dP8iucRWl7KHvyv6I2HlRqHLDjkw",
-    authDomain: "and-132-archive.firebaseapp.com",
-    projectId: "and-132-archive",
-    storageBucket: "and-132-archive.appspot.com",
-    messagingSenderId: "650954051303",
-    appId: "1:650954051303:web:9ebe30987a0dbaf0451c42"
+    apiKey:"AIzaSyBFHz2dP8iucRWl7KHvyv6I2HlRqHLDjkw",
+    authDomain:"and-132-archive.firebaseapp.com",
+    projectId:"and-132-archive",
+    storageBucket:"and-132-archive.appspot.com",
+    messagingSenderId:"650954051303",
+    appId:"1:650954051303:web:9ebe30987a0dbaf0451c42"
   };
 
   const app = initializeApp(firebaseConfig);
@@ -216,11 +162,11 @@
     const res = await listAll(baseRef);
 
     res.prefixes.forEach(folder => {
-      const card = document.createElement("div");
+      const card = document.createElement("article");
       card.className = "card";
       card.innerHTML = `
         <h3>${folder.name}</h3>
-        <p>저장됨 · Firebase Storage</p>
+        <p style="color:var(--muted); font-size:14px;">Firebase 저장 폴더</p>
         <a class="btn" href="list.html?path=${folder.fullPath}">열기</a>
       `;
       container.appendChild(card);
