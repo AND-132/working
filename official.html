@@ -247,68 +247,76 @@
   }
 
   loadOfficialFolders();
-</script>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+  import { app, auth } from "./firebase-init.js";
+  import { onAuthStateChanged, signOut }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import {
+    getStorage, ref, listAll, getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBFHz2dP8iucRWl7KHvyv6I2HlRqHLDjkw",
-    authDomain: "and-132-archive.firebaseapp.com",
-    projectId: "and-132-archive",
-    storageBucket: "and-132-archive.appspot.com",
-    messagingSenderId: "650954051303",
-    appId: "1:650954051303:web:9ebe30987a0dbaf0451c42"
-  };
+  /* ---------- 로그인 상태 처리 ---------- */
+  const authBtn = document.getElementById('authBtn');
 
-  const app = initializeApp(firebaseConfig);
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      authBtn.textContent = "로그아웃";
+      authBtn.href = "#";
+      authBtn.onclick = async () => {
+        await signOut(auth);
+        alert("로그아웃 되었습니다.");
+        location.href = "./login.html";
+      };
+    } else {
+      authBtn.textContent = "로그인 / 회원가입";
+      authBtn.href = "./login.html";
+      setTimeout(() => location.href = "./login.html", 10);
+    }
+  });
+
+  /* ---------- Storage 불러오기 ---------- */
   const storage = getStorage(app);
 
-  const container = document.getElementById("official-grid");
+  const toggleBtn = document.getElementById("toggleFilesBtn");
+  const fileListBox = document.getElementById("fileList");
 
-  async function loadOfficialFolders() {
-    const baseRef = ref(storage, "official");
-    const res = await listAll(baseRef);
+  toggleBtn.addEventListener("click", async () => {
+    fileListBox.style.display =
+      fileListBox.style.display === "none" ? "block" : "none";
 
-    res.prefixes.forEach(async (folder) => {
-      const card = document.createElement("div");
-      card.className = "tms-card";
+    if (fileListBox.dataset.loaded === "1") return;
 
-      const title = document.createElement("h3");
-      title.innerText = folder.name; // 폴더명이 카드 타이틀
+    const rootRef = ref(storage, "official/");
 
-      const button = document.createElement("button");
-      button.className = "open-btn";
-      button.innerText = "열기";
-      button.onclick = () => openFolder(folder.fullPath);
+    try {
+      const res = await listAll(rootRef);
 
-      card.appendChild(title);
-      card.appendChild(button);
-      container.appendChild(card);
-    });
-  }
+      let html = "<ul>";
 
-  async function openFolder(path) {
-    const folderRef = ref(storage, path);
-    const res = await listAll(folderRef);
+      // 📁 폴더들
+      res.prefixes.forEach(folder => {
+        html += `<li>📁 ${folder.name}</li>`;
+      });
 
-    let list = "";
-    for (const item of res.items) {
-      const url = await getDownloadURL(item);
-      list += `<li><a href="${url}" target="_blank">${item.name}</a></li>`;
+      // 📄 파일들
+      for (const item of res.items) {
+        const url = await getDownloadURL(item);
+        html += `<li>📄 <a href="${url}" target="_blank">${item.name}</a></li>`;
+      }
+
+      html += "</ul>";
+
+      fileListBox.innerHTML = html;
+      fileListBox.dataset.loaded = "1";
+
+    } catch (e) {
+      fileListBox.innerHTML = "<p>불러오기 실패 (권한 또는 경로 오류)</p>";
+      console.error(e);
     }
-
-    const win = window.open("", "_blank");
-    win.document.write(`
-      <h2>${path}</h2>
-      <ul>${list}</ul>
-    `);
-  }
-
-  loadOfficialFolders();
+  });
 </script>
-<script type="module" src="./storage-eval.js"></script>
+
 
 </body>
 </html>
