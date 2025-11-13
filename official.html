@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --primary:#0A2740;
@@ -22,29 +21,10 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Pretendard', sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Pretendard', sans-serif;
+      color:var(--text); background:linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
     }
     .container{max-width:1100px; margin:0 auto; padding:24px}
-    header{
-      position:sticky; top:0; z-index:10;
-      backdrop-filter:saturate(1.1) blur(8px);
-      background:rgba(255,255,255,.85);
-      border-bottom:1px solid #E5E7EB;
-    }
-    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
-    .logo{width:34px; height:34px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg,var(--primary),var(--accent)); box-shadow:0 6px 20px rgba(0,0,0,.08)}
-    .links{display:flex; gap:14px; align-items:center}
-    .pill{padding:10px 14px; border-radius:999px; border:1px solid #E5E7EB; background:#fff}
-    .btn{padding:10px 14px; border-radius:12px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-weight:600}
-
-    .hero{display:grid; gap:18px; align-items:center; grid-template-columns:1.2fr .8fr; padding:48px 0}
-    .hero-card{background:var(--card); border:1px solid #E5E7EB; border-radius:20px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.05)}
-
-    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px}
     .card{
       background:var(--card);
       border:1px solid #E5E7EB;
@@ -54,27 +34,31 @@
       flex-direction:column;
       gap:10px;
       transition:transform .15s ease, box-shadow .15s ease;
+      height:100%;
     }
     .card:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.06)}
-    .card a{margin-top:auto}
-
-    footer{padding:40px 0; color:var(--muted); font-size:14px; text-align:center}
-
-    /* Firebase 폴더 카드 */
-    #official-grid {
-      display:grid; grid-template-columns:repeat(4,1fr);
-      gap:16px; margin-top:20px;
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.1) blur(8px);
+      background:rgba(255,255,255,.85); border-bottom:1px solid #E5E7EB;
     }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+    .logo{width:34px; height:34px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg,var(--primary),var(--accent)); box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    .links{display:flex; gap:14px; align-items:center}
+    .pill{padding:10px 14px; border-radius:999px; border:1px solid #E5E7EB; background:#fff}
+    .btn{padding:10px 14px; border-radius:12px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-weight:600}
+    .hero{display:grid; gap:18px; align-items:center; grid-template-columns:1.2fr .8fr; padding:48px 0}
+    .hero-card{background:var(--card); border:1px solid #E5E7EB; border-radius:20px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.05)}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px}
     .tms-card{
-      background:#fff; border:1px solid #E5E7EB;
-      border-radius:16px; padding:18px;
-      display:flex; flex-direction:column; gap:10px;
+      background:var(--card); border:1px solid #E5E7EB; border-radius:16px; padding:18px; text-align:center;
+      box-shadow:0 6px 12px rgba(0,0,0,.04); transition:.2s;
     }
+    .tms-card:hover{transform:translateY(-3px); box-shadow:0 10px 20px rgba(0,0,0,.07);}
     .open-btn{
-      padding:10px; background:#3A7DFF; border:none;
-      color:white; font-weight:600; border-radius:10px;
-      cursor:pointer;
+      background:var(--accent); color:white; border:none; border-radius:8px; padding:8px 14px; cursor:pointer; margin-top:8px;
     }
+    footer{padding:40px 0; color:var(--muted); font-size:14px; text-align:center}
   </style>
 </head>
 
@@ -95,12 +79,10 @@
   </header>
 
   <main class="container">
-
-    <!-- Hero Section -->
     <section class="hero">
       <div>
         <h1>공식 아카이브 (2020–2025)</h1>
-        <p class="sub">인증·심사·평가 대비용 행정 아카이브.</p>
+        <p class="sub">인증·심사·평가 대비용 행정 아카이브. HRD-Net/NCS 문서, 평가서, 증빙자료를 체계적으로 보관합니다.</p>
         <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
           <a class="btn" href="#quick-start">빠른 시작</a>
           <a class="pill" href="./official.html">새로고침</a>
@@ -116,97 +98,88 @@
       </div>
     </section>
 
-    <!-- Firebase 폴더 영역 -->
-    <section id="archives">
-      <h2>연도별 아카이브 (자동 연동)</h2>
-      <div id="official-grid"></div>
+    <!-- 🔥 Firebase Storage 폴더 카드 표시 -->
+    <section class="archive-section">
+      <h2>연도별 아카이브 (Firebase Storage 연동)</h2>
+      <div id="official-grid" class="grid"></div>
     </section>
 
-    <!-- 원래 카드들 -->
-    <div class="grid">
-      <article class="card"><h3>인증·심사 체크리스트</h3><p>기관 인증/심사 대응</p><a class="btn" href="#">열기</a></article>
-      <article class="card"><h3>NCS 교과목 회의록</h3><p>운영/수업계획</p><a class="btn" href="#">열기</a></article>
-      <article class="card"><h3>훈련생 가이드</h3><p>출결/환불/장려금</p><a class="btn" href="#">열기</a></article>
-
-      <!-- 🔥 이 카드만 Firebase 연결됨 -->
-      <article class="card">
-        <h3>평가 운영 패키지</h3>
-        <p>평가일지, 감독자 체크리스트 등</p>
-        <a class="btn" href="list.html?path=official/01_훈련운영">열기</a>
-      </article>
-
-      <article class="card"><h3>지표별 증빙폴더</h3><p>기관평가 증빙자료</p><a class="btn" href="#">열기</a></article>
-      <article class="card"><h3>템플릿 다운로드</h3><p>서식 다운로드</p><a class="btn" href="#">열기</a></article>
-    </div>
-
-    <!-- About + Footer -->
-    <section id="about" style="margin-top:52px">
-      <h2>About</h2>
-      <a class="pill" href="mailto:sanghee@example.com">연락하기</a>
-    </section>
-
-    <div class="hero-card" id="quick-start">
-      <ol style="margin:0; padding-left:18px; line-height:1.9">
-        <li>저장소 생성</li>
-        <li>official.html 업로드</li>
-        <li>Pages 설정</li>
-      </ol>
-    </div>
-
-    <footer><p>© <span id="y"></span> 박상희</p></footer>
+    <footer>
+      <p>© <span id="y"></span> 박상희 • Official Archive • Built with GitHub Pages</p>
+    </footer>
   </main>
 
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 
-<script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
+  <!-- ✅ Firebase Storage 연동 -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
-<!-- 로그인 표시 -->
-<script type="module">
-  import { auth } from './firebase-init.js';
-  import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyBFHz2dP8iucRWl7KHvyv6I2HlRqHLDjkw",
+      authDomain: "and-132-archive.firebaseapp.com",
+      projectId: "and-132-archive",
+      storageBucket: "and-132-archive.appspot.com",
+      messagingSenderId: "650954051303",
+      appId: "1:650954051303:web:9ebe30987a0dbaf0451c42"
+    };
 
-  const btn = document.getElementById("authBtn");
-  onAuthStateChanged(auth, (user)=>{
-    if(user){
-      btn.textContent = "로그아웃";
-      btn.onclick = async ()=>{
-        await signOut(auth);
-        location.href="./login.html";
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+    const container = document.getElementById("official-grid");
+
+    async function loadOfficialFolders() {
+      const baseRef = ref(storage, "official");
+      const res = await listAll(baseRef);
+
+      if (res.prefixes.length === 0 && res.items.length === 0) {
+        container.innerHTML = "<p>아직 업로드된 폴더나 파일이 없습니다.</p>";
+        return;
       }
-    } else {
-      btn.textContent = "로그인 / 회원가입";
-      btn.href="./login.html";
+
+      for (const folder of res.prefixes) {
+        const card = document.createElement("div");
+        card.className = "tms-card";
+
+        const title = document.createElement("h3");
+        title.innerText = folder.name;
+
+        const button = document.createElement("button");
+        button.className = "open-btn";
+        button.innerText = "열기";
+        button.onclick = () => openFolder(folder.fullPath);
+
+        card.appendChild(title);
+        card.appendChild(button);
+        container.appendChild(card);
+      }
+
+      // 폴더 없이 파일만 있을 때 처리
+      for (const file of res.items) {
+        const url = await getDownloadURL(file);
+        const card = document.createElement("div");
+        card.className = "tms-card";
+        card.innerHTML = `<h3>${file.name}</h3><a class="open-btn" href="${url}" target="_blank">다운로드</a>`;
+        container.appendChild(card);
+      }
     }
-  });
-</script>
 
-<!-- Firebase official 폴더 자동 불러오기 -->
-<script type="module">
-import { app } from "./firebase-init.js";
-import { getStorage, ref, listAll } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+    async function openFolder(path) {
+      const folderRef = ref(storage, path);
+      const res = await listAll(folderRef);
+      let list = "";
+      for (const item of res.items) {
+        const url = await getDownloadURL(item);
+        list += `<li><a href="${url}" target="_blank">${item.name}</a></li>`;
+      }
+      const win = window.open("", "_blank");
+      win.document.write(`<h2>${path}</h2><ul>${list}</ul>`);
+    }
 
-const storage = getStorage(app);
-const grid = document.getElementById("official-grid");
-
-async function loadFolders(){
-  const base = ref(storage, "official");
-  const res = await listAll(base);
-
-  res.prefixes.forEach(folder=>{
-    const div = document.createElement("div");
-    div.className = "tms-card";
-    div.innerHTML = `
-      <h3>${folder.name}</h3>
-      <button class="open-btn" onclick="location.href='list.html?path=${folder.fullPath}'">
-        열기
-      </button>
-    `;
-    grid.appendChild(div);
-  });
-}
-loadFolders();
-</script>
-
+    loadOfficialFolders();
+  </script>
 </body>
 </html>
