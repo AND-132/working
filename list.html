@@ -1,48 +1,80 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>문서 목록</title>
+  <meta charset="UTF-8">
+  <title>문서 목록 | Official Archive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style>
-body{font-family:'Pretendard',sans-serif;background:#F6F7FB;margin:0;padding:24px;}
-#fileList{margin-top:20px;}
-.item{padding:12px;border-bottom:1px solid #E5E7EB;display:flex;justify-content:space-between;}
-.btn{padding:6px 12px;border-radius:8px;background:#3A7DFF;color:#fff;text-decoration:none;font-size:14px;}
-</style>
+  <style>
+    body{
+      background:#f7f9fc;
+      font-family:'Segoe UI', system-ui;
+      margin:0; padding:40px;
+    }
+    h1{font-size:22px; margin-bottom:20px;}
+    #fileList{
+      display:flex; flex-direction:column; gap:10px; margin-top:20px;
+    }
+    .item{
+      background:#fff; padding:14px 16px;
+      border:1px solid #ddd; border-radius:8px;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    a.btn{
+      padding:6px 12px;
+      background:#3A7DFF; color:#fff;
+      border-radius:8px;
+      text-decoration:none;
+      font-size:14px;
+    }
+  </style>
 </head>
 
 <body>
+  <h1 id="title"></h1>
+  <div id="fileList">불러오는 중...</div>
 
-<h2 id="title"></h2>
-<div id="loading">불러오는 중...</div>
-<div id="fileList"></div>
-<a href="official.html" class="btn" style="margin-top:20px;display:inline-block;">← 돌아가기</a>
+  <a href="official.html" style="display:block;margin-top:30px;color:#666;">← 돌아가기</a>
 
 <script type="module">
-import { storage } from "./firebase-init.js";
-import { ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
+import { app } from "./firebase-init.js";
+import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
-const path = new URLSearchParams(window.location.search).get("path");
+const storage = getStorage(app);
+const fileList = document.getElementById("fileList");
+
+const path = new URLSearchParams(location.search).get("path");
 document.getElementById("title").innerText = "📂 " + path;
 
-async function load(){
-  const res = await listAll(ref(storage, path));
-  document.getElementById("loading").style.display="none";
+async function loadFiles() {
+  const folderRef = ref(storage, path);
+  const res = await listAll(folderRef);
 
-  // 폴더 표시
-  res.prefixes.forEach(folder=>{
-    fileList.innerHTML += `<div class="item">📁 ${folder.name}<a class="btn" href="list.html?path=${folder.fullPath}">열기</a></div>`;
+  fileList.innerHTML = "";
+
+  // 📁 하위 폴더
+  res.prefixes.forEach(folder => {
+    fileList.innerHTML += `
+      <div class="item">
+        📁 ${folder.name}
+        <a class="btn" href="list.html?path=${folder.fullPath}">열기</a>
+      </div>
+    `;
   });
 
-  // 파일 표시
-  for(const item of res.items){
-    const url = await getDownloadURL(item);
-    fileList.innerHTML += `<div class="item">📄 ${item.name}<a class="btn" href="${url}" target="_blank">보기</a></div>`;
+  // 📄 파일
+  for (const file of res.items) {
+    const url = await getDownloadURL(file);
+    fileList.innerHTML += `
+      <div class="item">
+        📄 ${file.name}
+        <a class="btn" target="_blank" href="${url}">보기</a>
+      </div>
+    `;
   }
 }
-load();
+
+loadFiles();
 </script>
 
 </body>
